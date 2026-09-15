@@ -1,0 +1,29 @@
+{
+  "name": "synergy-messenger",
+  "version": "3.0.0-alpha.9",
+  "description": "SYNERGY Messenger V3 — serverless P2P messenger with Double Ratchet E2E, encrypted media/voice, MLS groups, non-custodial Finance Bridge, Android hardening, encrypted replicas, multi-device authorization and bounded security guards",
+  "private": true,
+  "scripts": {
+    "build:www": "node scripts/copy-www.js",
+    "cap:sync": "npm run build:www && npx cap sync android",
+    "cap:open": "npx cap open android",
+    "cap:run": "npx cap run android",
+    "test": "node --experimental-default-type=module --test tests/v3/*.test.js tests/v3/*/*.test.js",
+    "test:v3": "node --experimental-default-type=module --test tests/v3/*.test.js tests/v3/*/*.test.js",
+    "android:harden": "node scripts/apply-android-hardening.mjs",
+    "android:prepare": "npm run build:www && node scripts/apply-android-hardening.mjs && npx cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/splash-screen": "^6.0.2",
+    "@capacitor/status-bar": "^6.0.1",
+    "@capacitor/app": "^6.0.1",
+    "@capacitor/haptics": "^6.0.1",
+    "@capacitor/keyboard": "^6.0.2",
+    "@waku/sdk": "^0.0.36"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2"
+  }
+}

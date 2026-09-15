@@ -1,0 +1,23 @@
+{
+  "appId": "ai.sinergy.messenger",
+  "appName": "Синергия-Мессенджер",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#020403",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#020403"
+    }
+  },
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#020403"
+  }
+}

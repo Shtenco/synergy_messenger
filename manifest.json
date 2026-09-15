@@ -1,0 +1,25 @@
+{
+  "name": "Синергия-Мессенджер",
+  "short_name": "Синергия",
+  "description": "Serverless P2P-мессенджер с Double Ratchet E2E, encrypted media/voice, MLS-группами, Finance Bridge, encrypted replicas, multi-device и security hardening",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#020403",
+  "theme_color": "#020403",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

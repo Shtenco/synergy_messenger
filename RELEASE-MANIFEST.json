@@ -1,0 +1,9 @@
+{
+  "release": "3.0.0-alpha.9",
+  "project": "SYNERGY Messenger V3",
+  "file_count": 293,
+  "regression": "249/249 tests passed in final release gate",
+  "checksum_manifest": "SHA256SUMS.txt",
+  "security_status": "final hardened alpha; not a production-security claim",
+  "generated_date": "2026-09-16"
+}

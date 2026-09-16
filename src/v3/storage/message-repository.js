@@ -1,0 +1,1 @@
+export class MessageRepository { constructor(db){this.db=db;} get(messageId){return this.db.get('messages',messageId);} put(record){return this.db.put('messages',record);} list(){return this.db.getAll('messages');} }

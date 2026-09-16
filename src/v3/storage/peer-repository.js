@@ -1,0 +1,1 @@
+export class PeerRepository { constructor(db){this.db=db;} get(peerKey){return this.db.get('transportPeers',peerKey);} put(record){return this.db.put('transportPeers',record);} list(){return this.db.getAll('transportPeers');} delete(peerKey){return this.db.delete('transportPeers',peerKey);} }

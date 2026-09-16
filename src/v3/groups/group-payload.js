@@ -1,0 +1,7 @@
+import { validatePaymentEvent } from '../finance/payment-protocol.js';
+import { utf8, utf8Decode } from '../crypto/bytes.js';
+import { validateMediaManifest } from '../media/media-manifest.js';
+const TYPES=new Set(['text','receipt','media','policy','payment']);
+export function validateGroupPayload(p){if(!p||p.version!==1||!TYPES.has(p.type))throw new Error('GROUP_PAYLOAD_INVALID');if(p.type==='text'){if(typeof p.text!=='string'||!p.text)throw new Error('GROUP_TEXT_INVALID');if(p.reply!=null&&(typeof p.reply!=='object'||Array.isArray(p.reply)))throw new Error('GROUP_REPLY_INVALID');}if(p.type==='receipt'){if(!p.targetMessageId||!['delivered','read'].includes(p.state)||!p.senderDeviceId)throw new Error('GROUP_RECEIPT_INVALID');}if(p.type==='media')validateMediaManifest(p.manifest);if(p.type==='payment')validatePaymentEvent(p.payment);if(p.type==='policy'){if(!p.policy||typeof p.policy!=='object'||typeof p.policy.ownerDeviceId!=='string'||!p.policy.ownerDeviceId||!Number.isInteger(p.policy.revision)||p.policy.revision<1||!Array.isArray(p.policy.admins))throw new Error('GROUP_POLICY_PAYLOAD_INVALID');}if(p.expiresAt!=null&&!Number.isFinite(p.expiresAt))throw new Error('GROUP_EXPIRY_INVALID');return p;}
+export function encodeGroupPayload(p){return utf8(JSON.stringify(validateGroupPayload(p)));}
+export function decodeGroupPayload(bytes){if(!(bytes instanceof Uint8Array))throw new Error('GROUP_PAYLOAD_BYTES_REQUIRED');let p;try{p=JSON.parse(utf8Decode(bytes));}catch{throw new Error('GROUP_PAYLOAD_JSON_INVALID');}return validateGroupPayload(p);}

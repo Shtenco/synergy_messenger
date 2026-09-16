@@ -1,0 +1,38 @@
+<!-- SYNERGY Phase 5 overlay. Applied to an official Capacitor-generated AndroidManifest.xml. -->
+<synergy-hardening xmlns:android="http://schemas.android.com/apk/res/android">
+  <permissions>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+  </permissions>
+  <application>
+    <service android:name=".SynergyP2PService" android:exported="false" android:stopWithTask="true" android:foregroundServiceType="dataSync" />
+  </application>
+  <activity-filters>
+    <intent-filter>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.DEFAULT" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:scheme="synergy" android:host="contact" />
+    </intent-filter>
+    <intent-filter>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.DEFAULT" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:scheme="synergy" android:host="chat" />
+    </intent-filter>
+    <intent-filter>
+      <action android:name="android.intent.action.SEND" />
+      <category android:name="android.intent.category.DEFAULT" />
+      <data android:mimeType="text/plain" />
+      <data android:mimeType="image/*" />
+      <data android:mimeType="video/*" />
+      <data android:mimeType="audio/*" />
+      <data android:mimeType="application/pdf" />
+      <data android:mimeType="application/octet-stream" />
+    </intent-filter>
+  </activity-filters>
+</synergy-hardening>

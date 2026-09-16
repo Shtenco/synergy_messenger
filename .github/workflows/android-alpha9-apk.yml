@@ -1,0 +1,92 @@
+name: SYNERGY Messenger alpha.9 APK
+
+on:
+  push:
+    branches:
+      - import/alpha9-direct-final
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout staging
+        uses: actions/checkout@v4
+
+      - name: Reconstruct verified runtime patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .transport/runtime-patch/part-*.b64 | base64 --decode > /tmp/runtime-patch.tar.xz
+          echo "a3b49ea0b53138cfc95dc28b55b9f5920cd1f9f78967aadaf8d53fae1755f94a  /tmp/runtime-patch.tar.xz" | sha256sum -c -
+          tar -xJf /tmp/runtime-patch.tar.xz -C .
+
+      - name: Verify canonical runtime files
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/runtime.sha256 <<'EOF'
+          23a29c43abf00b2d19d17435ee41adf6a46bb29995d2bc20af13c5f4cdde335a  index.html
+          7cf2dbd71502b9f7af1bab7e549e0645aae108caffba3535702678d40b6d96c6  js/app.js
+          e3a7cfceba9e50280ed867bd31298e64db4f3f55cc8228babe76171520e3bfcb  src/v3/groups/group-controller.js
+          0addf1755529d2657419627e98105b9edff2c116b3d79aec403a175e6ff6b710  src/v3/media/media-manager.js
+          4926fd75e56d0354aabcc0f099dc66d792f5bfbadd1f07fa47b85fad88b8511c  src/v3/ui/messenger-controller.js
+          EOF
+          sha256sum -c /tmp/runtime.sha256
+          test -s js/app.js
+          test -s src/v3/ui/messenger-controller.js
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Prepare web runtime
+        run: npm run build:www
+
+      - name: Add Android platform
+        run: npx cap add android
+
+      - name: Apply Android hardening
+        run: npm run android:harden
+
+      - name: Sync Capacitor
+        run: npx cap sync android
+
+      - name: Build debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Package APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          cp android/app/build/outputs/apk/debug/app-debug.apk "dist/Синергия-Мессенджер-alpha.9.apk"
+          sha256sum "dist/Синергия-Мессенджер-alpha.9.apk" | tee dist/APK-SHA256.txt
+          stat -c '%n %s bytes' "dist/Синергия-Мессенджер-alpha.9.apk"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: synergy-messenger-alpha9-apk
+          path: |
+            dist/Синергия-Мессенджер-alpha.9.apk
+            dist/APK-SHA256.txt
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,133 @@
+/* ============================================================
+   SYNERGY MESSENGER — Design System
+   Based on SINERGY Finance v8 visual language
+   ============================================================ */
+
+:root {
+  /* Core palette from Finance */
+  --ink: #020403;
+  --ink2: #060a07;
+  --ink3: #0a100c;
+  --panel: #08100b;
+  --panel2: #0c1510;
+  --paper: #f4fff7;
+  --muted: #8da097;
+  --muted2: #6b7f72;
+
+  /* Accent */
+  --green: #00ef73;
+  --green2: #57ffa6;
+  --green3: #0aa958;
+  --soft: rgba(0, 239, 115, 0.10);
+  --soft2: rgba(0, 239, 115, 0.18);
+  --line: rgba(255, 255, 255, 0.095);
+  --line2: rgba(255, 255, 255, 0.06);
+
+  /* Semantic */
+  --danger: #ff6b76;
+  --warn: #ffd166;
+  --violet: #a78bfa;
+  --gold: #ffcf5b;
+  --blue: #5b9dff;
+
+  /* Geometry */
+  --radius: 24px;
+  --radius-sm: 14px;
+  --radius-xs: 10px;
+  --radius-full: 999px;
+  --shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+  --shadow-sm: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+  /* Typography */
+  --sans: "Inter", "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", Consolas, monospace;
+
+  /* Layout */
+  --sidebar-w: 380px;
+  --topbar-h: 64px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--ink);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  overflow: hidden;
+  height: 100dvh;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+button { cursor: pointer; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* Ambient background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 42px 42px;
+  z-index: -2;
+}
+
+.ambient {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: -1;
+}
+.ambient-a {
+  width: 480px; height: 480px;
+  background: var(--green);
+  right: -140px; top: -180px;
+}
+.ambient-b {
+  width: 360px; height: 360px;
+  background: #006e36;
+  left: 10%; bottom: -160px;
+}
+
+/* Utility */
+.hidden { display: none !important; }
+.muted { color: var(--muted); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }

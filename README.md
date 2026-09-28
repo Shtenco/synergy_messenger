@@ -188,3 +188,36 @@ Before calling this production-ready, complete at minimum:
 Current source release: **`v3.0.0-alpha.9`**.
 
 The release is intentionally labeled **alpha** despite the completed architecture and regression suite. Security-sensitive software should be promoted only after external verification of the remaining production boundaries above.
+
+
+<!-- SYNERGY-FEDERATION-PASSPORT:START -->
+---
+
+## 🧭 SYNERGY federation passport
+
+**Домен:** 💬 Messaging / communications  
+**Архитектурный родитель:** [`synergy_apps`](https://github.com/Shtenco/synergy_apps)  
+**Архитектурный корень:** [`synergy_system`](https://github.com/Shtenco/synergy_system)
+
+```mermaid
+flowchart LR
+    SYS[🧭 synergy_system] --> P[synergy_apps]
+    P --> THIS[synergy_messenger]
+    THIS --> E[📦 Evidence / outputs]
+```
+
+### Документационный контракт
+
+README должен показывать: проблему → архитектуру → реальные артефакты → проверку → ограничения → связи с федерацией. Сильные claims без evidence остаются R&D/CANDIDATE.
+
+### Навигация
+
+- [📚 Атлас всех 75 репозиториев](https://github.com/Shtenco/synergy_system/blob/main/docs/SYNERGY_REPOSITORY_ATLAS.md)
+- [🧾 Машиночитаемый registry](https://github.com/Shtenco/synergy_system/blob/main/registry/SYNERGY_REPOSITORIES.json)
+- [🧭 SYNERGY SYSTEM](https://github.com/Shtenco/synergy_system)
+
+### Authority rule
+
+Репозиторий не присваивает полномочия соседнего домена: AI ≠ authorization, UI ≠ ledger, blockchain commitment ≠ accounting truth, backtest ≠ realized external P&L.
+
+<!-- SYNERGY-FEDERATION-PASSPORT:END -->

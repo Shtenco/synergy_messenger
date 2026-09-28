@@ -221,3 +221,47 @@ README должен показывать: проблему → архитект�
 Репозиторий не присваивает полномочия соседнего домена: AI ≠ authorization, UI ≠ ledger, blockchain commitment ≠ accounting truth, backtest ≠ realized external P&L.
 
 <!-- SYNERGY-FEDERATION-PASSPORT:END -->
+
+---
+
+# 💬 Глубокий evidence-паспорт Messenger V3
+
+## Release evidence
+
+`RELEASE-MANIFEST.json` фиксирует:
+
+```text
+release: 3.0.0-alpha.9
+file_count: 293
+regression: 249/249 tests passed
+security_status: final hardened alpha; not a production-security claim
+```
+
+Это хороший пример правильной эпистемической границы: regression gate подтверждает конкретный source release, но не заменяет независимый cryptographic audit.
+
+## Security trust chain
+
+```mermaid
+flowchart LR
+    ID[🔑 Device identity] --> X3DH[Handshake]
+    X3DH --> DR[Double Ratchet]
+    DR --> CT[🔐 Ciphertext]
+    CT --> P2P[WebRTC / Waku]
+    CT --> REP[Encrypted replica]
+    FIN[💳 PaymentIntent] --> EXT[External Finance Provider]
+```
+
+## Production blockers как formal gates
+
+| Gate | Что требуется |
+|---|---|
+| MLS | real RFC 9420/OpenMLS backend + interoperability tests |
+| Network | multi-device physical WebRTC/Waku tests across independent networks |
+| Android | official scaffold + signed APK/AAB + physical device verification |
+| Crypto | independent security review |
+| Recovery | reviewed Account Root recovery model |
+| Finance | independent wallet/custody/compliance/signing validation |
+
+## Что особенно важно сохранить
+
+Messenger не должен получить raw wallet key или generic signing authority; Finance Bridge остаётся capability boundary.

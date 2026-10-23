@@ -39,17 +39,17 @@ UI / MessengerController
 
 | Phase | Capability | Status |
 |---|---|---|
-| 1 | P2P Core, durable outbox/inbox, WebRTC + Waku abstraction, offline recovery | ✅ |
-| 2 | Device identity, X3DH-style bootstrap, Double Ratchet, encrypted session state | ✅ |
-| 3 | Real UI, local contacts, Public ID/QR, encrypted history, receipts, reply/forward, disappearing messages | ✅ |
-| 4A | Encrypted resumable P2P media, chunk integrity, backpressure, retry/resume | ✅ |
-| 4B | Private voice messages, Opus-first MediaRecorder flow, waveform, seek, speed control | ✅ |
-| 4C | Decentralized MLS group orchestration, epochs, add/remove, roles, rotating mailbox, group media/voice | ✅ alpha |
-| 4D | Non-custodial Finance Bridge, PaymentIntent, explicit authorization, verified receipts | ✅ |
-| 5 | Android Keystore/native bridge/intent/FGS hardening source overlay | ✅ source/overlay |
-| 6A | Encrypted decentralized media replica layer | ✅ |
-| 6B | Account-root multi-device certificates, revocation, fan-out, logical dedupe | ✅ |
-| 6C | Persistent replay guard, token-bucket rate limits, bounded MLS queues, cleanup and diagnostics | ✅ |
+| 1 | P2P Core, durable outbox/inbox, WebRTC + Waku abstraction, offline recovery |  |
+| 2 | Device identity, X3DH-style bootstrap, Double Ratchet, encrypted session state |  |
+| 3 | Real UI, local contacts, Public ID/QR, encrypted history, receipts, reply/forward, disappearing messages |  |
+| 4A | Encrypted resumable P2P media, chunk integrity, backpressure, retry/resume |  |
+| 4B | Private voice messages, Opus-first MediaRecorder flow, waveform, seek, speed control |  |
+| 4C | Decentralized MLS group orchestration, epochs, add/remove, roles, rotating mailbox, group media/voice |  alpha |
+| 4D | Non-custodial Finance Bridge, PaymentIntent, explicit authorization, verified receipts |  |
+| 5 | Android Keystore/native bridge/intent/FGS hardening source overlay |  source/overlay |
+| 6A | Encrypted decentralized media replica layer |  |
+| 6B | Account-root multi-device certificates, revocation, fan-out, logical dedupe |  |
+| 6C | Persistent replay guard, token-bucket rate limits, bounded MLS queues, cleanup and diagnostics |  |
 
 ## Security invariants
 
@@ -193,17 +193,17 @@ The release is intentionally labeled **alpha** despite the completed architectur
 <!-- SYNERGY-FEDERATION-PASSPORT:START -->
 ---
 
-## 🧭 SYNERGY federation passport
+##  SYNERGY federation passport
 
-**Домен:** 💬 Messaging / communications  
+**Домен:**  Messaging / communications  
 **Архитектурный родитель:** [`synergy_apps`](https://github.com/Shtenco/synergy_apps)  
 **Архитектурный корень:** [`synergy_system`](https://github.com/Shtenco/synergy_system)
 
 ```mermaid
 flowchart LR
-    SYS[🧭 synergy_system] --> P[synergy_apps]
+    SYS[ synergy_system] --> P[synergy_apps]
     P --> THIS[synergy_messenger]
-    THIS --> E[📦 Evidence / outputs]
+    THIS --> E[ Evidence / outputs]
 ```
 
 ### Документационный контракт
@@ -212,9 +212,9 @@ README должен показывать: проблему → архитект�
 
 ### Навигация
 
-- [📚 Атлас всех 75 репозиториев](https://github.com/Shtenco/synergy_system/blob/main/docs/SYNERGY_REPOSITORY_ATLAS.md)
-- [🧾 Машиночитаемый registry](https://github.com/Shtenco/synergy_system/blob/main/registry/SYNERGY_REPOSITORIES.json)
-- [🧭 SYNERGY SYSTEM](https://github.com/Shtenco/synergy_system)
+- [ Атлас всех 75 репозиториев](https://github.com/Shtenco/synergy_system/blob/main/docs/SYNERGY_REPOSITORY_ATLAS.md)
+- [ Машиночитаемый registry](https://github.com/Shtenco/synergy_system/blob/main/registry/SYNERGY_REPOSITORIES.json)
+- [ SYNERGY SYSTEM](https://github.com/Shtenco/synergy_system)
 
 ### Authority rule
 
@@ -224,7 +224,7 @@ README должен показывать: проблему → архитект�
 
 ---
 
-# 💬 Глубокий evidence-паспорт Messenger V3
+#  Глубокий evidence-паспорт Messenger V3
 
 ## Release evidence
 
@@ -243,12 +243,12 @@ security_status: final hardened alpha; not a production-security claim
 
 ```mermaid
 flowchart LR
-    ID[🔑 Device identity] --> X3DH[Handshake]
+    ID[ Device identity] --> X3DH[Handshake]
     X3DH --> DR[Double Ratchet]
-    DR --> CT[🔐 Ciphertext]
+    DR --> CT[ Ciphertext]
     CT --> P2P[WebRTC / Waku]
     CT --> REP[Encrypted replica]
-    FIN[💳 PaymentIntent] --> EXT[External Finance Provider]
+    FIN[ PaymentIntent] --> EXT[External Finance Provider]
 ```
 
 ## Production blockers как formal gates

@@ -1,3 +1,9 @@
+<!-- SCIENTIFIC-V4-2026:START -->
+<img src="assets/readme/scientific-architecture-v4.svg" width="100%" alt="SYNERGY MESSENGER / PRIVATE COMMUNICATION"/>
+
+[Новое научно-техническое досье V4](docs/SCIENTIFIC_DOSSIER_V4_2026.md) — подтверждённые алгоритмы, исследовательские перспективы, протокол проверки. Исходный README сохранён полностью.
+<!-- SCIENTIFIC-V4-2026:END -->
+
 # SYNERGY Messenger V3
 
 **Version:** `3.0.0-alpha.9`  
